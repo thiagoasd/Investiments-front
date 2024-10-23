@@ -25,4 +25,11 @@ describe('InvestmentCalculatorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(InvestmentCalculatorComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('#investment-calculator-title')?.textContent).toContain('Calculadora de Investimentos');
+  });
 });

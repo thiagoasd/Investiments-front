@@ -10,5 +10,5 @@ import { InvestmentCalculatorComponent } from './features/components/investment-
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'investiments-front';
+  title = 'Calculadora de investimentos B3';
 }
