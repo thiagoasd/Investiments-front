@@ -1,0 +1,40 @@
+<p>CDB</p>
+<div>
+  <form [formGroup]="cdbForm" (ngSubmit)="calculate()">
+    <div>
+      <label for="CDB-initial-value"> Valor inicial </label>
+      <input
+        type="number"
+        id="CDB-initial-value"
+        formControlName="initialValue"
+      />
+    </div>
+    <div *ngIf="cdbForm.controls['initialValue'].errors?.['min']" class="errorMessage">
+        Valor inicial deve ser positivo
+    </div>
+    <div>
+      <label for="CDB-cdi"> CDI (%)</label>
+      <input type="number" id="CDB-cdi" formControlName="cdi" />
+    </div>
+    <div *ngIf="cdbForm.controls['cdi'].errors?.['min']" class="errorMessage">
+        CDI deve ser positivo
+    </div>
+    <div>
+      <label for="CDB-tb"> Taxa do banco (%)</label>
+      <input type="number" id="CDB-tb" formControlName="tb" />
+    </div>
+    <div *ngIf="cdbForm.controls['tb'].errors?.['min']" class="errorMessage">
+        Taxa do banco deve ser positivo
+    </div>
+    <div>
+        <label for="CDB-months"> Quantidade de meses </label>
+        <input type="number" id="CDB-months" formControlName="months" />
+    </div>
+    <div *ngIf="cdbForm.controls['months'].errors?.['min']" class="errorMessage">
+        Quantidade de meses deve ser maior que 1
+    </div>
+    <button type="submit" [disabled]="disabledSubmit()">
+      Calcular
+    </button>
+  </form>
+</div>
