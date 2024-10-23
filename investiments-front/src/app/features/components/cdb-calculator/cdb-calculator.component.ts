@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CdbCalculationRequest } from '../../models/cdb-calculation-request.model';
 import { CdbCalculationService } from '../../services/cdb-calculation.service';
+import { CdbCalculation } from '../../models/cdb-calculation.model';
 
 @Component({
   selector: 'app-cdb-calculator',
@@ -19,7 +20,9 @@ export class CdbCalculatorComponent {
     cdi: new FormControl<number>(0.9, Validators.min(0)),
     tb: new FormControl<number>(108, Validators.min(0)),
     months: new FormControl<number>(1, Validators.min(1))
-  })
+  });
+
+  calculation: CdbCalculation | undefined; 
 
   disabledSubmit(): boolean {
     return !this.cdbForm.valid;
@@ -31,7 +34,7 @@ export class CdbCalculatorComponent {
       <number> this.cdbForm.controls['cdi'].value,
       <number> this.cdbForm.controls['tb'].value,
       <number> this.cdbForm.controls['months'].value
-    );
+    ).subscribe(res => this.calculation = res);
   }
 
 }

@@ -37,4 +37,21 @@
       Calcular
     </button>
   </form>
+
+  <div *ngIf="calculation">
+    <table>
+      <thead>
+        <td>Mês</td>
+        <td>Resultado bruto</td>
+        <td>Resultado liquido</td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let value of calculation.values">
+          <td>{{value.month}}</td>
+          <td>{{value.grossValue | number: '4.1-5'}}</td>
+          <td>{{value.liquidValue | number: '4.1-5'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
