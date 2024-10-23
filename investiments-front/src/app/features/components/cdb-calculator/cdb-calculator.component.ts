@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CdbCalculationRequest } from '../../models/cdb-calculation-request.model';
 import { CdbCalculationService } from '../../services/cdb-calculation.service';
 import { CdbCalculation } from '../../models/cdb-calculation.model';
+import { TableModule } from 'primeng/table';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-cdb-calculator',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, TableModule, InputNumberModule, FloatLabelModule, ButtonModule],
   templateUrl: './cdb-calculator.component.html',
   styleUrl: './cdb-calculator.component.scss'
 })
@@ -22,8 +25,8 @@ export class CdbCalculatorComponent {
     months: new FormControl<number>(1, Validators.min(1))
   });
 
-  calculation: CdbCalculation | undefined; 
-
+  calculation: CdbCalculation | undefined;
+  
   disabledSubmit(): boolean {
     return !this.cdbForm.valid;
   }
@@ -34,7 +37,11 @@ export class CdbCalculatorComponent {
       <number> this.cdbForm.controls['cdi'].value,
       <number> this.cdbForm.controls['tb'].value,
       <number> this.cdbForm.controls['months'].value
-    ).subscribe(res => this.calculation = res);
+    ).subscribe(res => 
+      {
+        this.calculation = res;
+      }
+    );
   }
 
 }

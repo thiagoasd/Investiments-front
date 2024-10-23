@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CdbCalculatorComponent } from './cdb-calculator.component';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('CDBCALCULATORComponent', () => {
   let component: CdbCalculatorComponent;
@@ -8,7 +10,10 @@ describe('CDBCALCULATORComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CdbCalculatorComponent]
+      imports: [CdbCalculatorComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting() ]
     })
     .compileComponents();
 
